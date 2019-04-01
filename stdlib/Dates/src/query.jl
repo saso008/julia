@@ -120,8 +120,36 @@ julia> Dates.dayofweek(Date("2000-01-01"))
 """
 dayofweek(dt::TimeType) = dayofweek(days(dt))
 
-const Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday = 1, 2, 3, 4, 5, 6, 7
-const Mon, Tue, Wed, Thu, Fri, Sat, Sun = 1, 2, 3, 4, 5, 6, 7
+for (ii, day_ind, short_day, long_day) in ((1, "first", :Mon, :Monday), (2, "second", :Tue, :Tuesday), (3, "third", :Wed, :Wednesday), (4, "fourth", :Thu, :Thursday), (5, "fifth", :Fri, :Friday), (6, "sixth", :Sat, :Saturday), (7, "seventh", :Sun, :Sunday))
+
+    short_name = string(short_day)
+    long_name = string(long_day)
+    name_ind = day_ind
+    @eval begin
+        @doc """
+            $($long_name)
+
+        The $($name_ind) day of the week.
+
+        # Examples
+        ```jldoctest
+        julia> $($long_name)
+        1
+        ```
+        """ const $long_day = $ii
+        @doc """
+            $($short_name)
+
+        Abbreviation for [`$($long_name)`](@ref).
+
+        # Examples
+        ```jldoctest
+        julia> $($short_name)
+        1
+        ```
+        """ const $short_day = $ii
+    end
+end
 
 dayname(day::Integer, locale::DateLocale) = locale.days_of_week[day]
 dayabbr(day::Integer, locale::DateLocale) = locale.days_of_week_abbr[day]
