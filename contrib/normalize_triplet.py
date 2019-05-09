@@ -36,6 +36,7 @@ gcc_version_mapping = {
     'gcc4': "-gcc4",
     'gcc7': "-gcc7",
     'gcc8': "-gcc8",
+    'gcc9': "-gcc9",
 }
 cxx_abi_mapping = {
     'blank_cxx_abi': "",
