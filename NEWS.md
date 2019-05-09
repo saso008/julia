@@ -25,6 +25,7 @@ New library functions
 Standard library changes
 ------------------------
 
+* `Libdl.dlopen()` can now be invoked in `do`-block syntax, similar to `open()`.
 * `Regex` can now be multiplied (`*`) and exponentiated (`^`), like strings ([#23422]).
 * Cmd interpolation (`` `$(x::Cmd) a b c` `` where) now propagates `x`'s process flags
   (environment, flags, working directory, etc) if `x` is the first interpolant and errors
